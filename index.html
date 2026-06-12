@@ -54,6 +54,43 @@ section{padding:90px 5%}
 .btn-outline:hover{border-color:var(--purple-l);color:var(--purple-l)}
 .hero{min-height:100vh;display:flex;align-items:center;padding-top:110px;position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0;pointer-events:none}
+/* ── CINEMATIC ANIMATED CITY BACKGROUND ── */
+.cyber-city{position:absolute;inset:0;overflow:hidden;perspective:600px}
+.city-floor{position:absolute;bottom:0;left:-50%;right:-50%;height:55%;
+  background:
+    repeating-linear-gradient(90deg,transparent,transparent 78px,rgba(245,158,11,0.12) 80px,transparent 82px),
+    repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(124,58,237,0.18) 40px,transparent 42px);
+  transform:rotateX(72deg);transform-origin:bottom center;
+  mask-image:linear-gradient(to top,#000 5%,transparent 90%);
+  -webkit-mask-image:linear-gradient(to top,#000 5%,transparent 90%);
+  animation:floorScroll 6s linear infinite}
+@keyframes floorScroll{from{background-position:0 0,0 0}to{background-position:0 0,0 84px}}
+.data-stream{position:absolute;top:0;width:2px;height:120px;
+  background:linear-gradient(to bottom,transparent,var(--gold-l),transparent);
+  opacity:0;animation:streamFall linear infinite;filter:blur(.5px)}
+@keyframes streamFall{0%{opacity:0;transform:translateY(-120px)}10%{opacity:.7}90%{opacity:.7}100%{opacity:0;transform:translateY(100vh)}}
+.holo{position:absolute;border:1px solid rgba(124,58,237,0.35);border-radius:8px;
+  background:rgba(124,58,237,0.06);backdrop-filter:blur(2px);
+  box-shadow:0 0 25px rgba(124,58,237,0.25);animation:holoFloat 7s ease-in-out infinite}
+.holo::before{content:'';position:absolute;top:7px;left:7px;right:7px;height:3px;
+  background:linear-gradient(90deg,var(--gold),transparent);border-radius:3px;
+  box-shadow:0 8px 0 rgba(167,139,250,0.4),0 16px 0 rgba(245,158,11,0.3)}
+@keyframes holoFloat{0%,100%{transform:translateY(0) rotateY(-8deg)}50%{transform:translateY(-18px) rotateY(8deg)}}
+.holo1{top:14%;left:6%;width:110px;height:70px;animation-delay:0s}
+.holo2{top:22%;right:8%;width:90px;height:58px;animation-delay:1.5s}
+.holo3{bottom:30%;left:10%;width:80px;height:52px;animation-delay:3s}
+.light-rays{position:absolute;top:30%;left:50%;width:600px;height:600px;
+  transform:translate(-50%,-50%);
+  background:conic-gradient(from 0deg,transparent 0deg,rgba(245,158,11,0.07) 10deg,transparent 20deg,transparent 40deg,rgba(124,58,237,0.07) 50deg,transparent 60deg);
+  border-radius:50%;animation:rayspin 30s linear infinite;
+  mask-image:radial-gradient(circle,#000 20%,transparent 70%);
+  -webkit-mask-image:radial-gradient(circle,#000 20%,transparent 70%)}
+@keyframes rayspin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.created-by{position:absolute;bottom:14px;right:20px;font-size:11px;letter-spacing:2px;
+  color:var(--muted2);z-index:3;font-family:'Syne',sans-serif;text-transform:uppercase}
+.created-by b{color:var(--gold);font-weight:700}
+
+
 .hero-orb1{position:absolute;top:-200px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.12) 0%,transparent 70%);animation:orbFloat 8s ease-in-out infinite}
 .hero-orb2{position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.08) 0%,transparent 70%);animation:orbFloat 10s ease-in-out infinite reverse}
 .hero-orb3{position:absolute;top:40%;left:30%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,0.08) 0%,transparent 70%);animation:orbFloat 12s ease-in-out infinite}
@@ -337,10 +374,19 @@ document.addEventListener('click',function(e){if(e.target.closest('.btn')||e.tar
 </div>
 <section class="hero" id="home">
   <div class="hero-bg">
+    <div class="cyber-city">
+      <div class="light-rays"></div>
+      <div class="city-floor"></div>
+      <div class="holo holo1"></div>
+      <div class="holo holo2"></div>
+      <div class="holo holo3"></div>
+      <div id="streams"></div>
+    </div>
     <div class="hero-orb1"></div><div class="hero-orb2"></div><div class="hero-orb3"></div>
     <div class="grid-lines"></div>
     <div class="particles" id="particles"></div>
   </div>
+  <div class="created-by">Created by <b>LOUIS</b></div>
   <div class="hero-grid">
     <div>
       <div class="hero-badge"><div class="hero-badge-dot"></div>🤖 AI-Powered Digital Agency — Karachi</div>
@@ -424,13 +470,13 @@ document.addEventListener('click',function(e){if(e.target.closest('.btn')||e.tar
   <div class="container">
     <div class="sec-head center reveal"><div class="sec-label">Find Us Online</div><h2 class="sec-title">Follow <span>Nexora</span></h2><p class="sec-sub">Connect with us on all major platforms — click to visit our profiles</p></div>
     <div class="social-grid reveal">
-      <a href="https://tiktok.com/@nexoratechnologies" target="_blank" class="social-card sc-tiktok"><div class="social-icon"><i class="fab fa-tiktok"></i></div><div class="social-name">TikTok</div><div class="social-handle">@nexoratechnologies</div></a>
-      <a href="https://youtube.com/@nexoratechnologies" target="_blank" class="social-card sc-youtube"><div class="social-icon"><i class="fab fa-youtube"></i></div><div class="social-name">YouTube</div><div class="social-handle">@nexoratechnologies</div></a>
-      <a href="https://instagram.com/nexoratechnologies" target="_blank" class="social-card sc-instagram"><div class="social-icon"><i class="fab fa-instagram"></i></div><div class="social-name">Instagram</div><div class="social-handle">@nexoratechnologies</div></a>
-      <a href="https://x.com/nexoratech" target="_blank" class="social-card sc-x"><div class="social-icon"><i class="fab fa-x-twitter"></i></div><div class="social-name">X (Twitter)</div><div class="social-handle">@nexoratech</div></a>
+      <a href="https://www.tiktok.com/@nexora.technologies" target="_blank" class="social-card sc-tiktok"><div class="social-icon"><i class="fab fa-tiktok"></i></div><div class="social-name">TikTok</div><div class="social-handle">@nexora.technologies</div></a>
+      <a href="https://youtube.com/@nexora.technologies" target="_blank" class="social-card sc-youtube"><div class="social-icon"><i class="fab fa-youtube"></i></div><div class="social-name">YouTube</div><div class="social-handle">@nexora.technologies</div></a>
+      <a href="https://www.instagram.com/nexora6235/" target="_blank" class="social-card sc-instagram"><div class="social-icon"><i class="fab fa-instagram"></i></div><div class="social-name">Instagram</div><div class="social-handle">@nexora.technologies</div></a>
+      <a href="https://x.com/technologi77842" target="_blank" class="social-card sc-x"><div class="social-icon"><i class="fab fa-x-twitter"></i></div><div class="social-name">X (Twitter)</div><div class="social-handle">@technologi77842</div></a>
       <a href="https://wa.me/923112806897" target="_blank" class="social-card sc-whatsapp"><div class="social-icon"><i class="fab fa-whatsapp"></i></div><div class="social-name">WhatsApp</div><div class="social-handle">+92 311 2806897</div></a>
-      <a href="https://facebook.com/nexoratechnologies" target="_blank" class="social-card sc-facebook"><div class="social-icon"><i class="fab fa-facebook-f"></i></div><div class="social-name">Facebook</div><div class="social-handle">Nexora Technologies</div></a>
-      <a href="https://linkedin.com/company/nexoratechnologies" target="_blank" class="social-card sc-linkedin"><div class="social-icon"><i class="fab fa-linkedin-in"></i></div><div class="social-name">LinkedIn</div><div class="social-handle">Nexora Technologies</div></a>
+      <a href="https://www.facebook.com/profile.php?id=61585138066919" target="_blank" class="social-card sc-facebook"><div class="social-icon"><i class="fab fa-facebook-f"></i></div><div class="social-name">Facebook</div><div class="social-handle">Nexora Technologies</div></a>
+      <a href="https://www.linkedin.com/in/nexora-technologies-5b4abb400/" target="_blank" class="social-card sc-linkedin"><div class="social-icon"><i class="fab fa-linkedin-in"></i></div><div class="social-name">LinkedIn</div><div class="social-handle">Nexora Technologies</div></a>
     </div>
   </div>
 </section>
@@ -456,7 +502,8 @@ document.addEventListener('click',function(e){if(e.target.closest('.btn')||e.tar
         <div class="ci"><div class="ci-icon"><i class="fab fa-whatsapp"></i></div><div><div class="ci-label">WhatsApp</div><div class="ci-val">+92 311 2806897</div></div></div>
         <div class="ci"><div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="ci-label">Location</div><div class="ci-val">Karachi, Pakistan</div></div></div>
         <div class="ci"><div class="ci-icon"><i class="fas fa-clock"></i></div><div><div class="ci-label">Working Hours</div><div class="ci-val">Mon–Sat: 9:00 AM – 8:00 PM<br><span style="color:var(--gold);font-size:13px">AI Bot: Available 24/7</span></div></div></div>
-        <div class="pm-card"><div class="pm-title">💳 Payment Methods</div><div class="pm-grid"><div class="pm-item"><div class="pm-dot"></div>Bank Transfer</div><div class="pm-item"><div class="pm-dot"></div>EasyPaisa</div><div class="pm-item"><div class="pm-dot"></div>JazzCash</div><div class="pm-item"><div class="pm-dot"></div>Cash</div></div><p style="font-size:12px;color:var(--muted2);margin-top:10px">Account details shared after confirmation.</p></div>
+        <div class="pm-card"><div class="pm-title">💳 Payment Methods</div><div class="pm-grid"><div class="pm-item"><div class="pm-dot"></div>Bank Transfer</div><div class="pm-item"><div class="pm-dot"></div>EasyPaisa</div><div class="pm-item"><div class="pm-dot"></div>JazzCash</div><div class="pm-item"><div class="pm-dot"></div>Cash</div></div><p style="font-size:12px;color:var(--gold);margin-top:8px">JazzCash / EasyPaisa: <b>0311-2806897</b></p>
+          <p style="font-size:12px;color:var(--muted2);margin-top:6px">Bank details shared after confirmation.</p></div>
       </div>
     </div>
   </div>
@@ -505,7 +552,7 @@ document.addEventListener('click',function(e){if(e.target.closest('.btn')||e.tar
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
-      <div><a href="#home" class="footer-logo">NEX<span>O</span>RA.</a><p class="footer-desc">Pakistan's leading AI-powered digital marketing agency. Let us take your business to the next level.</p><div class="footer-socials"><a href="https://facebook.com/nexoratechnologies" target="_blank" class="fsocial"><i class="fab fa-facebook-f"></i></a><a href="https://instagram.com/nexoratechnologies" target="_blank" class="fsocial"><i class="fab fa-instagram"></i></a><a href="https://youtube.com/@nexoratechnologies" target="_blank" class="fsocial"><i class="fab fa-youtube"></i></a><a href="https://tiktok.com/@nexoratechnologies" target="_blank" class="fsocial"><i class="fab fa-tiktok"></i></a><a href="https://linkedin.com/company/nexoratechnologies" target="_blank" class="fsocial"><i class="fab fa-linkedin-in"></i></a><a href="https://x.com/nexoratech" target="_blank" class="fsocial"><i class="fab fa-x-twitter"></i></a></div></div>
+      <div><a href="#home" class="footer-logo">NEX<span>O</span>RA.</a><p class="footer-desc">Pakistan's leading AI-powered digital marketing agency. Let us take your business to the next level.</p><div class="footer-socials"><a href="https://www.facebook.com/profile.php?id=61585138066919" target="_blank" class="fsocial"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/nexora6235/" target="_blank" class="fsocial"><i class="fab fa-instagram"></i></a><a href="https://youtube.com/@nexora.technologies" target="_blank" class="fsocial"><i class="fab fa-youtube"></i></a><a href="https://www.tiktok.com/@nexora.technologies" target="_blank" class="fsocial"><i class="fab fa-tiktok"></i></a><a href="https://www.linkedin.com/in/nexora-technologies-5b4abb400/" target="_blank" class="fsocial"><i class="fab fa-linkedin-in"></i></a><a href="https://x.com/technologi77842" target="_blank" class="fsocial"><i class="fab fa-x-twitter"></i></a></div></div>
       <div class="footer-col"><h4>Services</h4><a href="#services">Branding & Design</a><a href="#services">Social Media</a><a href="#services">Website Development</a><a href="#services">AI & Automation</a><a href="#services">Digital Ads</a><a href="#services">Video & Media</a></div>
       <div class="footer-col"><h4>Plans</h4><a href="#plans">Starter — 15k/mo</a><a href="#plans">Growth — 30k/mo</a><a href="#plans">Pro — 60k/mo</a><a href="#rates">View All Rates</a></div>
       <div class="footer-col"><h4>Company</h4><a href="#home">About Us</a><a href="#reviews">Client Reviews</a><a href="#gallery">Portfolio</a><a href="#tools">Free Tools</a><a href="#contact">Contact Us</a></div>
@@ -525,6 +572,8 @@ document.addEventListener('click',function(e){if(e.target.closest('.btn')||e.tar
   </div>
 </div>
 <script>
+// DATA STREAMS
+(function(){var c=document.getElementById('streams');if(!c)return;for(var i=0;i<18;i++){var s=document.createElement('div');s.className='data-stream';s.style.left=Math.random()*100+'%';s.style.animationDuration=(3+Math.random()*4)+'s';s.style.animationDelay=(Math.random()*5)+'s';s.style.background='linear-gradient(to bottom,transparent,'+(Math.random()>0.5?'var(--gold-l)':'var(--purple-l)')+',transparent)';c.appendChild(s);}})();
 (function(){var c=document.getElementById('particles');if(!c)return;for(var i=0;i<25;i++){var p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.animationDuration=(8+Math.random()*12)+'s';p.style.animationDelay=(Math.random()*10)+'s';p.style.width=p.style.height=(1+Math.random()*2)+'px';p.style.opacity='0';c.appendChild(p);}})();
 (function(){var words=['Digital','Online','AI-Driven','Powerful','Future'];var i=0,el=document.getElementById('typeWord');if(!el)return;setInterval(function(){el.style.opacity='0';el.style.transform='translateY(8px)';setTimeout(function(){i=(i+1)%words.length;el.textContent=words[i];el.style.opacity='1';el.style.transform='translateY(0)';},300);},2600);})();
 (function(){var card=document.querySelector('.tilt-card');if(!card)return;var visual=document.querySelector('.hero-visual');visual.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-0.5;var y=(e.clientY-r.top)/r.height-0.5;card.style.transform='perspective(900px) rotateY('+(x*12)+'deg) rotateX('+(-y*12)+'deg) scale(1.02)';});visual.addEventListener('mouseleave',function(){card.style.transform='perspective(900px) rotateY(0) rotateX(0) scale(1)';});})();
